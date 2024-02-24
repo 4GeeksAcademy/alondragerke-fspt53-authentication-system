@@ -1,3 +1,146 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+body {
+    background: rgb(255,247,168);
+    background: linear-gradient(0deg, rgba(255,247,168,1) 0%, rgba(255,159,180,1) 100%);
+    font-family: "Cabin", sans-serif;
+}
+
+/* navbar */
+.navbar {
+    background-color: none;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link-style {
+    text-decoration: none;
+}
+
+.logo {
+    width: 210px;
+    height: 80px;
+}
+
+.btn {
+    font-size: 20px;
+    color: black;
+    border-color: #FFD8B1;
+    border-width: 2px;
+    border-radius: 25px;
+    padding: 15px;
+    padding-top: 8px; 
+    padding-bottom: 8px;
+    width: 100px;
+}
+.btn:hover {
+    color: rgb(250, 110, 140);    
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.199);
+    text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.267);
+}
+
+/* body */
+.btn-home {
+    width: 150px;
+}
+
+.home-page {
+    padding-top: 250px;
+}
+
+.home-page h1 {
+    padding-bottom: 30px;
+}
+
+.home-page .link-style {
+    margin: 30px;
+}
+
+.home-page .link-style:hover {
+    margin: 30px;
+}
+
+.input-group {
+    width: 550px;
+    padding-bottom: 20px;
+}
+
+.addon {
+    width: 130px;
+    font-size: 20px;
+    border-radius: 50px;
+    padding-left: 20px;
+    border-color: rgb(250, 110, 140);
+    border-width: 2px;
+    background-color: rgba(250, 110, 140, 0.342);
+}
+
+.login-container {
+    margin-top: 300px;
+}
+
+.form-control {
+    border-radius: 50px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.205);
+    border-color: rgb(250, 110, 140);
+    border-width: 2px;
+}
+
+.form-control:active, .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.205);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 5px rgba(250, 110, 140, 0.5);
+}
+
+
+.form-control::placeholder {
+    color: rgba(80, 80, 80, 0.5);
+}
+
+.login-page-btn {
+    background-color: rgba(255, 255, 255, 0) !important;
+    border-color: rgb(250, 110, 140);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px; /* Ajusta el ancho según sea necesario */
+    height: 50px; /* Ajusta la altura según sea necesario */
+    margin: 0 auto;
+}
+
+.login-page-btn:hover,
+.login-page-btn:active,
+.login-page-btn:focus,
+.login-page-btn:focus-visible {
+    border-color: rgb(250, 110, 140) !important;
+    color: rgb(250, 110, 140);    
+    text-shadow: 1px 1px 3px rgba(255, 0, 0, 0.267);
+}
+
+.signin-container {
+    margin-top: 200px;
+}
+
+/* footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+.footer a {
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(250, 110, 140);
+}
+
+.fa-heart {
+    color: rgb(250, 110, 140);
+}
