@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from '../store/appContext';
 import { useNavigate } from "react-router-dom";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import getState from "/workspaces/alondragerke-fspt53-authentication-system/src/front/js/store/flux.js";
 
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ username: "", password: "" });
     const navigate = useNavigate();
-    const { actions } = getState();
+    const { actions } = useContext(Context);
 
     const handleChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -17,11 +17,11 @@ const Login = () => {
         e.preventDefault();
         try {
             const userData = await actions.login(credentials.username, credentials.password); // Utilizar la acción de login
-            if (userData && userData.access_token) {
+            if (userData && userData.token) {
                 navigate('/private'); // Redirigir a la página privada después del inicio de sesión exitoso
-            } else {
-                // El inicio de sesión falló, puedes mostrar un mensaje de error o realizar alguna otra acción
-                console.error('Login failed:', userData && userData.message ? userData.message : 'Unknown error'); // Mostrar el mensaje de error proporcionado por la acción de login, o un mensaje predeterminado
+            // } else {
+            //     // El inicio de sesión falló, puedes mostrar un mensaje de error o realizar alguna otra acción
+            //     console.error('Login failed:', userData && userData.message ? userData.message : 'Unknown error'); // Mostrar el mensaje de error proporcionado por la acción de login, o un mensaje predeterminado
             }
         } catch (error) {
             console.error('Error during login:', error);

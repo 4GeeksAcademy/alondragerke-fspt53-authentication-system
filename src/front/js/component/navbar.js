@@ -9,11 +9,11 @@ export const Navbar = () => {
 				<Link to="/" className="link-style">
 					<img src={Logo} className="logo" />
 				</Link>
-				<div className="d-grid gap-2 d-md-flex justify-content-md-end">
+				{/* <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 					<Link to="/login" className="link-style">
 						<button className="btn me-md-2" type="button">Log in</button>
-					</Link>
-				</div>
+					</Link> */}
+				{/* </div> */}
 			</div>
 		</nav>
 	);

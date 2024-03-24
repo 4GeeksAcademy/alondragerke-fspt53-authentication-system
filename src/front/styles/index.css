@@ -98,8 +98,12 @@ body {
     box-shadow: 0 0 5px rgba(250, 110, 140, 0.5);
 }
 
-
 .form-control::placeholder {
+    color: rgba(80, 80, 80, 0.5);
+}
+
+
+#form-control-date {
     color: rgba(80, 80, 80, 0.5);
 }
 
@@ -125,6 +129,13 @@ body {
 
 .signin-container {
     margin-top: 200px;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 /* footer */

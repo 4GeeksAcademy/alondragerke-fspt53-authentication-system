@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate en lugar de useHistory
-import { Button, Form, InputGroup } from "react-bootstrap"; // Importa los componentes necesarios de react-bootstrap
-import getState from "/workspaces/alondragerke-fspt53-authentication-system/src/front/js/store/flux.js";
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../store/appContext';
+import { useNavigate } from "react-router-dom"; 
+import { Button, Form, InputGroup } from "react-bootstrap"; 
 
 
 const Signup = () => {
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();
     const [userData, setUserData] = useState({
-        firstName: "",
-        lastName: "",
-        birthDate: "",
+        first_name: "",
+        last_name: "",
+        birth_date: "",
         country: "",
         username: "",
         email: "",
         password: ""
     });
-    const navigate = useNavigate();
-    const { actions } = getState();
-
 
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -25,34 +24,37 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await actions.signup(userData); // Utilizar la acción de signup
-            if (response && response.message) {
-                console.log(response.message); // Manejar el mensaje de respuesta según sea necesario
-                navigate("/login"); // Redirigir al usuario a la página de inicio de sesión después del registro exitoso
-            } else {
-                // El registro falló, puedes mostrar un mensaje de error o realizar alguna otra acción
-                console.error('Signup failed:', response && response.error ? response.error : 'Unknown error'); // Mostrar el mensaje de error proporcionado por la acción de signup, o un mensaje predeterminado
-            }
+            const response = await actions.signup(userData);
+            setUserData({
+                first_name: '',
+                last_name: '',
+                birth_date: '',
+                country: '',
+                username: '',
+                email: '',
+                password: ''
+            });
+            console.log('Redirigiendo al usuario a la página de inicio de sesión');
+            navigate('/login');
         } catch (error) {
             console.error('Error during signup:', error);
         }
     };
-    
 
     return (
         <div className="d-flex justify-content-center signin-container">
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} >
                 <InputGroup className="mb-3 input-group">
                     <InputGroup.Text className="addon">First name</InputGroup.Text>
                     <Form.Control
                         type="text"
-                        name="firstName"
-                        value={userData.firstName}
+                        name="first_name"
+                        value={userData.first_name}
                         onChange={handleChange}
                         className="form-control focus-ring"
                         placeholder="John"
                         aria-label="First name"
-                        aria-describedby="firstName-input"
+                        aria-describedby="first_name-input"
                         required
                     />
                 </InputGroup>
@@ -60,27 +62,28 @@ const Signup = () => {
                     <InputGroup.Text className="addon">Last name</InputGroup.Text>
                     <Form.Control
                         type="text"
-                        name="lastName"
-                        value={userData.lastName}
+                        name="last_name"
+                        value={userData.last_name}
                         onChange={handleChange}
                         className="form-control focus-ring"
                         placeholder="Doe"
                         aria-label="Last name"
-                        aria-describedby="lastName-input"
+                        aria-describedby="last_name-input"
                         required
                     />
                 </InputGroup>
                 <InputGroup className="mb-3 input-group">
                     <InputGroup.Text className="addon">Birth date</InputGroup.Text>
                     <Form.Control
-                        type="text"
-                        name="birthDate"
-                        value={userData.birthDate}
+                        type="date"
+                        name="birth_date"
+                        value={userData.birth_date}
                         onChange={handleChange}
                         className="form-control focus-ring"
-                        placeholder="12/08/1980"
+                        id="form-control-date"
+                        placeholder="12-08-1980"
                         aria-label="Birth date"
-                        aria-describedby="birthDate-input"
+                        aria-describedby="birth_date-input"
                         required
                     />
                 </InputGroup>

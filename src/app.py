@@ -20,9 +20,22 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-app.config["JWT_SECRET_KEY"] = "X4t@K7j#N1hM6%v"  # Change this "super secret" to something else!
+app.config["JWT_SECRET_KEY"] = "X4t@K7j#N1hM6%v" 
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 86400
 jwt = JWTManager(app)
 
+# Manejo de errores relacionados con la autenticación
+@jwt.unauthorized_loader
+def unauthorized_response(callback):
+    return jsonify({"message": "Falta el encabezado de autorización"}), 401
+
+@jwt.invalid_token_loader
+def invalid_token_response(callback):
+    return jsonify({"message": "Token inválido"}), 401
+
+@jwt.expired_token_loader
+def expired_token_response(callback):
+    return jsonify({"message": "Token caducado"}), 401
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
